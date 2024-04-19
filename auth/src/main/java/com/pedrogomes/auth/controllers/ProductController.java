@@ -1,13 +1,20 @@
 package com.pedrogomes.auth.controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pedrogomes.auth.domain.models.ProductDTO;
 import com.pedrogomes.auth.domain.services.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -16,15 +23,21 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/product")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductController {
-    
     private final ProductService productService;
+    Map<String, ProductDTO> products = new HashMap<>();
 
-    @GetMapping
-    public ResponseEntity<String> GetProduct(){
-        String response = productService.getProduct();
+    @GetMapping("{productName}")
+    public ResponseEntity<ProductDTO> GetProduct(@PathVariable String productName){
+        ProductDTO productResponse = productService.getProduct(productName, products);
 
         return ResponseEntity.status(HttpStatus.OK)
         .contentType(MediaType.APPLICATION_JSON)
-        .body(response);
-    }    
+        .body(productResponse);
+    }   
+    
+    @PostMapping
+    public ResponseEntity<String> CreateProduct(@RequestBody ProductDTO productDTO){
+        productService.createUser(productDTO, products);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }
