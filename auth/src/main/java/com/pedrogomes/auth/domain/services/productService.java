@@ -1,5 +1,6 @@
 package com.pedrogomes.auth.domain.services;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductService {
     private final ProductPort productPort;
+
+    public List<Product> getProducts(Map<String, Product> products){
+        return productPort.getProducts(products);
+    }
 
     public Product getProduct(String productName, Map<String, Product> products){
         return productPort.getProduct(productName, products);

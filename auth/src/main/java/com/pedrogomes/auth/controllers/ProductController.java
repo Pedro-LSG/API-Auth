@@ -1,6 +1,7 @@
 package com.pedrogomes.auth.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,15 @@ import lombok.RequiredArgsConstructor;
 public class ProductController {
     private final ProductService productService;
     Map<String, Product> products = new HashMap<>();
+
+    @GetMapping
+    public ResponseEntity<List<Product>> GetProducts(){
+        List<Product> productResponse = productService.getProducts(products);
+
+        return ResponseEntity.status(HttpStatus.OK)
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(productResponse);
+    }
 
     @GetMapping("{productName}")
     public ResponseEntity<Product> GetProduct(@PathVariable String productName){

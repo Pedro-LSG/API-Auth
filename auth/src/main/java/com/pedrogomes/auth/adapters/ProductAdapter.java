@@ -1,5 +1,6 @@
 package com.pedrogomes.auth.adapters;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class ProductAdapter implements ProductPort {
     @Override
     public void createProduct(Product productDTO, Map<String, Product> products) {
         productRepository.createProduct(productDTO, products);
+    }
+
+    @Override
+    public List<Product> getProducts(Map<String, Product> products) {
+        return productRepository.getProducts(products);
     }
 }
