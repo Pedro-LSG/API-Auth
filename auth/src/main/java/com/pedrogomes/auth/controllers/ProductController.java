@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pedrogomes.auth.domain.models.ProductDTO;
+import com.pedrogomes.auth.domain.models.Product;
 import com.pedrogomes.auth.domain.services.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,11 +24,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductController {
     private final ProductService productService;
-    Map<String, ProductDTO> products = new HashMap<>();
+    Map<String, Product> products = new HashMap<>();
 
     @GetMapping("{productName}")
-    public ResponseEntity<ProductDTO> GetProduct(@PathVariable String productName){
-        ProductDTO productResponse = productService.getProduct(productName, products);
+    public ResponseEntity<Product> GetProduct(@PathVariable String productName){
+        Product productResponse = productService.getProduct(productName, products);
 
         return ResponseEntity.status(HttpStatus.OK)
         .contentType(MediaType.APPLICATION_JSON)
@@ -36,7 +36,7 @@ public class ProductController {
     }   
     
     @PostMapping
-    public ResponseEntity<String> CreateProduct(@RequestBody ProductDTO productDTO){
+    public ResponseEntity<String> CreateProduct(@RequestBody Product productDTO){
         productService.createUser(productDTO, products);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

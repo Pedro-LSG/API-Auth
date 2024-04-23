@@ -4,10 +4,10 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import com.pedrogomes.auth.domain.models.ProductDTO;
+import com.pedrogomes.auth.domain.models.Product;
 
 @Repository
 public interface ProductPort {
-    ProductDTO getProduct(String productName, Map<String, ProductDTO> products);
-    void createProduct(ProductDTO productDTO, Map<String, ProductDTO> products);
+    Product getProduct(String productName, Map<String, Product> products);
+    void createProduct(Product productDTO, Map<String, Product> products);
 }

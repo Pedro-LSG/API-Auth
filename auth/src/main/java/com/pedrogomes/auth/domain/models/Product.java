@@ -2,6 +2,6 @@ package com.pedrogomes.auth.domain.models;
 
 import java.math.BigDecimal;
 
-public record ProductDTO(String productName, BigDecimal productValue) {
+public record Product(String productName, BigDecimal productValue) {
     
 }
