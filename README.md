@@ -4,7 +4,7 @@
 
 With this project I am improving my knowledge about how an API authentication layer works.
 
-## Skils Ssed
+## Skils Used
 - Java
 - Spring Framework, Spring Security
 - API Rest
