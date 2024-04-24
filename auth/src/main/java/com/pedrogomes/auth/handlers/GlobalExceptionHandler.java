@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.pedrogomes.auth.exceptions.ProductNotFoundException;
+import com.pedrogomes.auth.exceptions.UserNotFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -14,4 +15,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String>HandleUserNotFound(Exception exception){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
 }

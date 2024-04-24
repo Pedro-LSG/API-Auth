@@ -15,9 +15,7 @@ public class AuthApplication {
 	public static Map<String, User> users = new HashMap<>();
 	public static void main(String[] args) {
 		SpringApplication.run(AuthApplication.class, args);
-		users.put("pedrogomes", new User("pedrogomes", 
-											new BCryptPasswordEncoder().encode("123456"), 
-											UserRole.ADMIN));
+		users.put("pedrogomes", new User("pedrogomes", new BCryptPasswordEncoder().encode("123456"), UserRole.ADMIN));
 	}
 
 }
