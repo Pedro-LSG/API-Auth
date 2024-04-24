@@ -23,6 +23,8 @@ public class User implements UserDetails {
         return List.of(new SimpleGrantedAuthority(UserRole.ROLE_USER.getRole()));
     }
 
+    public UserRole getRole() { return userRole; }
+
     @Override
     public String getPassword() { return password; }
 
