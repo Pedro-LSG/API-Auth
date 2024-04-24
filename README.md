@@ -21,6 +21,8 @@ With this project I am improving my knowledge about how an API authentication la
 ```markdown
 - GET    /product - Retrieve a list of all products (All authenticated users)
 
+- GET    /product/{productName} - Retrieves a specific product (All authenticated users)
+
 - POST   /product - Register a new product (ADMIN access required).
 
 - POST   /auth/login - Login into the API
