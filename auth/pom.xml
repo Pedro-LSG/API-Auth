@@ -42,6 +42,11 @@
             <version>1.18.22</version> <!-- Versão mais recente do Lombok -->
             <scope>provided</scope>
         </dependency>
+		<dependency>
+  			<groupId>com.auth0</groupId>
+  			<artifactId>java-jwt</artifactId>
+  			<version>4.4.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

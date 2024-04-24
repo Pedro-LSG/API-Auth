@@ -1,8 +1,8 @@
 package com.pedrogomes.auth.domain.models;
 
 public enum UserRole {
-    ADMIN("admin"),
-    USER("user"),
+    ADMIN("ADMIN"),
+    USER("USER"),
     ROLE_ADMIN("ROLE_ADMIN"),
     ROLE_USER("ROLE_USER");
 

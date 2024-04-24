@@ -6,18 +6,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.pedrogomes.auth.domain.ports.repository.UserRepository;
+import com.pedrogomes.auth.domain.ports.UserPort;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthorizationService implements UserDetailsService {
-    private final UserRepository userRepository;
+    private final UserPort userPort;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUserName(username);
+        return userPort.findByUserName(username);
     }
 
 }

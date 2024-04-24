@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pedrogomes.auth.AuthApplication;
 import com.pedrogomes.auth.domain.models.Authentication;
+import com.pedrogomes.auth.domain.models.LoginResponse;
 import com.pedrogomes.auth.domain.models.User;
-import com.pedrogomes.auth.domain.ports.repository.UserRepository;
+import com.pedrogomes.auth.domain.ports.UserPort;
+import com.pedrogomes.auth.domain.services.TokenService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,19 +24,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthController {
     private final AuthenticationManager authenticationManager;
-    private final UserRepository userRepository;
+    private final UserPort userPort;
+    private final TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Authentication credentials) throws Exception{
+    public ResponseEntity<LoginResponse> login(@RequestBody Authentication credentials) throws Exception{
         var usernamePassword = new UsernamePasswordAuthenticationToken(credentials.username(), credentials.password());
-        this.authenticationManager.authenticate(usernamePassword);
-
-        return ResponseEntity.status(HttpStatus.OK).build();
+        var auth = this.authenticationManager.authenticate(usernamePassword);
+        var token = tokenService.generateToken((User)auth.getPrincipal());
+        return ResponseEntity.ok(new LoginResponse(token));
     }
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody User register){
-        userRepository.register(register, AuthApplication.users);
+        userPort.register(register, AuthApplication.users);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

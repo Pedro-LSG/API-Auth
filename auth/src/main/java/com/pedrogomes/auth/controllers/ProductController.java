@@ -47,7 +47,7 @@ public class ProductController {
     
     @PostMapping
     public ResponseEntity<String> CreateProduct(@RequestBody Product productDTO){
-        productService.createUser(productDTO, products);
+        productService.createProduct(productDTO, products);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

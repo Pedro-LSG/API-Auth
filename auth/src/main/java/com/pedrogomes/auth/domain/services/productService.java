@@ -24,7 +24,7 @@ public class ProductService {
         return productPort.getProduct(productName, products);
     }
 
-    public void createUser(Product productDTO, Map<String, Product> products){
+    public void createProduct(Product productDTO, Map<String, Product> products){
         productPort.createProduct(productDTO, products);
     }
 }
