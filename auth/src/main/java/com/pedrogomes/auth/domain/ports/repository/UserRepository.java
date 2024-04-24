@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.pedrogomes.auth.AuthApplication;
@@ -28,6 +29,7 @@ public class UserRepository implements UserPort {
 
     @Override
     public void register(User user, Map<String, User> users) {
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         users.put(user.getUsername(), user);
     }
 }

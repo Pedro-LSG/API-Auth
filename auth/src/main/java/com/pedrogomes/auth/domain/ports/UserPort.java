@@ -9,6 +9,6 @@ import com.pedrogomes.auth.domain.models.User;
 
 @Repository
 public interface UserPort {
-    UserDetails findByUserName(String username/*, Map<String, User> users*/); 
+    UserDetails findByUserName(String username); 
     void register(User user, Map<String, User> users);
 }

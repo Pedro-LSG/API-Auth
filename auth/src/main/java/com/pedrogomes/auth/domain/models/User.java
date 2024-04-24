@@ -8,8 +8,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
+@Setter
 public class User implements UserDetails {
     String userName;
     String password;
